@@ -1,0 +1,138 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #150319;
+
+}
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    overflow-y: hidden;
+}
+
+.animation {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.animation span {
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    /* margin: 5px; */
+    border-radius: 50%;
+    box-shadow: 0 0 0 20px #ff00116a,
+        0 0 20px #ff000f,
+        0 0 50px #ff000f;
+    animation: animar calc(100s / var(--i)) linear alternate infinite;
+}
+
+
+@keyframes animar {
+    0% {
+        transform: translateY(100vh) scale(0);
+    }
+
+    100% {
+        transform: translateY(-10vh) scale(1);
+    }
+}
+
+.animation span:nth-of-type(even) {
+    background-color: #ff0;
+    box-shadow: 0 0 0 20px #ffff116a,
+        0 0 20px #ff0,
+        0 0 50px #ff0;
+}
+
+.subContainer {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.card {
+    background-color: #150319;
+    width: 300px;
+    position: relative;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.card p {
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    animation: animationText 5s linear ;
+}
+.card::before,
+.card::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 30px);
+    height: calc(100% + 30px);
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ffff00, #00ff00, #0099ff, #001aff,
+            #a200ff, #ff0055, #ff000f,
+            #ffff00, #00ff00, #0099ff, #001aff,
+            #a200ff);
+    z-index: -1;
+    background-size: 300%;
+    animation: cardBorder 5s linear alternate infinite;
+}
+
+.card::after {
+    filter: blur(50px);
+}
+@keyframes animationText {
+    0% {
+        opacity: 0;
+        filter: blur(50px);
+    }
+    50% {
+        opacity: 0.5;
+        filter: blur(20px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+@keyframes cardBorder {
+    0% {
+        background-position: 0;
+        scale: 1.05;
+    }
+
+    35% {
+        scale: 1.04;
+    }
+
+    50% {
+        scale: 1.01;
+    }
+
+    100% {
+        background-position: 900%;
+        scale: 0.9;
+    }
+}
